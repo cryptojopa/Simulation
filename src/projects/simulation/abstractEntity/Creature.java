@@ -13,17 +13,21 @@ public abstract class Creature extends Entity {
     }
 
     public abstract void makeMove(Map map);
+
     @Override
     public boolean isResource() {
         return false;
     }
 
     public Point nextPoint(Direction direction) {
-        switch (direction){
-            case UP:
-                if (th)
-        }
+        return switch (direction) {
+            case UP -> new Point(getX(), getY() - 1);
+            case DOWN -> new Point(getX(), getY() + 1);
+            case LEFT -> new Point(getX() - 1, getY());
+            case RIGHT -> new Point(getX() + 1, getY());
+        };
     }
+
     public int getHp() {
         return hp;
     }
@@ -39,6 +43,4 @@ public abstract class Creature extends Entity {
     public void setHp(int hp) {
         this.hp = hp;
     }
-
-
 }

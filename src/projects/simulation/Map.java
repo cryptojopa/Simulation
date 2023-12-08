@@ -2,11 +2,12 @@ package projects.simulation;
 
 import projects.simulation.abstractEntity.Entity;
 
+import javax.sound.midi.Soundbank;
 import java.util.HashMap;
 //import projects.simulation.entity.Void;
 
 public class Map {
-    private HashMap<Point, Entity> map;
+    private HashMap<Point, Entity> map = new HashMap<>();
     private int maxX;
     private int maxY;
 
@@ -25,7 +26,7 @@ public class Map {
 
 
     public void setEntity(Point point, Entity entity) {
-        if (point.getX() < maxX && point.getX() > 0 && point.getY() < maxY && point.getY() > 0) {
+        if (isPointEmpty(point) && point.getX() <= maxX && point.getX() >= 0 && point.getY() <= maxY && point.getY() >= 0) {
             map.put(point, entity);
         }
     }
@@ -34,23 +35,27 @@ public class Map {
         map.remove(point);
     }
 
-    public Entity getObject(Point point) {
-        return map.getOrDefault(point, null);
+    public Entity getEntity(Point point) {
+        Entity entity = map.get(point);
+        if (map.get(point) != null) {
+            return map.get(point);
+        } else {
+            return null;
+        }
     }
 
     public boolean isPointEmpty(Point point) {
-        return map.containsKey(point);
+        return !map.containsKey(point);
+    }
 
     public void render() {
-        for (Entity[] list: map) {
-            for (Entity entity: list) {
-                if (entity == null) {
-                    System.out.print("\uD83D\uDFE9 " );
+        for (int i = 0; i < maxY; i++){
+            for (int j = 0; j < maxX; j++) {
+                if (getEntity(new Point(j, i)) == null) {
+                    System.out.print("\uD83D\uDFE9 ");
+                } else {
+                    System.out.print(map.get(new Point(j, i)) + " ");
                 }
-                else {
-                    System.out.print(entity + " ");
-                }
-
             }
             System.out.println();
         }

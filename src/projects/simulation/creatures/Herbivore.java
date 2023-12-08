@@ -3,6 +3,7 @@ package projects.simulation.creatures;
 import projects.simulation.Map;
 import projects.simulation.Point;
 import projects.simulation.abstractEntity.Creature;
+import projects.simulation.enums.Direction;
 //import projects.simulation.entity.Void;
 
 public class Herbivore extends Creature {
@@ -19,7 +20,11 @@ public class Herbivore extends Creature {
 
     @Override
     public void makeMove(Map map) {
-        if (map.isPointEmpty(this.getPoint())) {
+        Point nextPoint = nextPoint(Direction.RIGHT);
+        if (map.isPointEmpty(nextPoint)) {
+            map.removeEntity(getPoint());
+            map.setEntity(nextPoint, this);
+            setPoint(nextPoint);
 
         }
     }
