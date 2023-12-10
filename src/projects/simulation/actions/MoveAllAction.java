@@ -1,9 +1,9 @@
 //package projects.simulation.actions;
 //
 //import projects.simulation.Map;
-//import projects.simulation.abstractEntity.Actions;
-//import projects.simulation.abstractEntity.Creature;
-//import projects.simulation.abstractEntity.Entity;
+//import projects.simulation.actions.Actions;
+//import projects.simulation.entity.abstractEntity.Creature;
+//import projects.simulation.entity.abstractEntity.Entity;
 //
 //public class MoveAllAction extends Actions {
 //    @Override

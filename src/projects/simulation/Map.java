@@ -1,13 +1,16 @@
 package projects.simulation;
 
-import projects.simulation.abstractEntity.Entity;
+import projects.simulation.entity.Empty;
+import projects.simulation.entity.abstracts.Creature;
+import projects.simulation.entity.abstracts.Entity;
+import projects.simulation.enums.Direction;
+import projects.simulation.exceptions.AlreadyHaveEntityException;
 
-import javax.sound.midi.Soundbank;
 import java.util.HashMap;
 //import projects.simulation.entity.Void;
 
 public class Map {
-    private HashMap<Point, Entity> map = new HashMap<>();
+    private HashMap<Cell, Entity> map = new HashMap<>();
     private int maxX;
     private int maxY;
 
@@ -24,38 +27,56 @@ public class Map {
         return maxY;
     }
 
+    private boolean isCellCorrect(Cell cell) {
+        return cell.getX() < maxX && cell.getX() >= 0 && cell.getY() < maxY && cell.getY() >= 0;
+    }
 
-    public void setEntity(Point point, Entity entity) {
-        if (isPointEmpty(point) && point.getX() <= maxX && point.getX() >= 0 && point.getY() <= maxY && point.getY() >= 0) {
-            map.put(point, entity);
+    public void setEntity(Cell cell, Entity entity) throws AlreadyHaveEntityException {
+        if (isCellCorrect(cell)) {
+            if (isCellEmpty(cell)) {
+                map.put(cell, entity);
+            } else {
+                throw new AlreadyHaveEntityException();
+            }
         }
     }
 
-    public void removeEntity(Point point) {
-        map.remove(point);
+    public Cell nextPoint(Direction direction, Creature creature) {
+        return switch (direction) {
+            case UP -> new Cell(creature.getX(), creature.getY() - 1);
+            case DOWN -> new Cell(creature.getX(), creature.getY() + 1);
+            case LEFT -> new Cell(creature.getX() - 1, creature.getY());
+            case RIGHT -> new Cell(creature.getX() + 1, creature.getY());
+        };
     }
 
-    public Entity getEntity(Point point) {
-        Entity entity = map.get(point);
-        if (map.get(point) != null) {
-            return map.get(point);
+    public int getCountOfEmptyCells() {
+        return maxX * maxY - map.size();
+    }
+
+    public void clearCell(Cell cell) {
+        if (isCellCorrect(cell)) {
+            map.remove(cell);
+        }
+    }
+
+    public Entity getEntity(Cell cell) {
+        isCellCorrect(cell);
+        if (isCellEmpty(cell)) {
+            return new Empty();
         } else {
-            return null;
+            return map.get(cell);
         }
     }
 
-    public boolean isPointEmpty(Point point) {
-        return !map.containsKey(point);
+    public boolean isCellEmpty(Cell cell) {
+        return !map.containsKey(cell);
     }
 
     public void render() {
-        for (int i = 0; i < maxY; i++){
-            for (int j = 0; j < maxX; j++) {
-                if (getEntity(new Point(j, i)) == null) {
-                    System.out.print("\uD83D\uDFE9 ");
-                } else {
-                    System.out.print(map.get(new Point(j, i)) + " ");
-                }
+        for (int y = 0; y < maxY; y++) {
+            for (int x = 0; x < maxX; x++) {
+                System.out.print(getEntity(new Cell(x, y)) + " ");
             }
             System.out.println();
         }

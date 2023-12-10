@@ -2,11 +2,11 @@ package projects.simulation;
 
 import java.util.Objects;
 
-public class Point {
+public class Cell {
     private int x;
     private int y;
 
-    public Point(int x, int y) {
+    public Cell(int x, int y) {
         this.x = x;
         this.y = y;
     }
@@ -31,8 +31,8 @@ public class Point {
     public boolean equals(Object object) {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
-        Point point = (Point) object;
-        return x == point.x && y == point.y;
+        Cell cell = (Cell) object;
+        return x == cell.x && y == cell.y;
     }
 
     @Override

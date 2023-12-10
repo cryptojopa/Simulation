@@ -1,4 +1,4 @@
-package projects.simulation.abstractEntity;
+package projects.simulation.actions;
 
 import projects.simulation.Map;
 

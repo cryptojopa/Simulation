@@ -1,15 +1,18 @@
-package projects.simulation.creatures;
+package projects.simulation.entity.creatures;
 
 import projects.simulation.Map;
-import projects.simulation.Point;
-import projects.simulation.abstractEntity.Creature;
+import projects.simulation.Cell;
+import projects.simulation.entity.abstracts.Creature;
 
 public class Predator extends Creature {
     private int attackPower;
 
-    public Predator(Point point) {
-        super(point);
+    public Predator(Cell cell) {
+        super(cell);
         this.setSpeed(2);
+    }
+
+    public Predator() {
     }
 
     public void attack(Herbivore herbivore) {
