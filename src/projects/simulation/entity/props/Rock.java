@@ -5,9 +5,9 @@ import projects.simulation.entity.abstracts.Entity;
 import projects.simulation.entity.abstracts.Prop;
 
 public class Rock extends Prop {
-    public Rock(Cell cell) {
-        super(cell);
-    }
+//    public Rock(Cell cell) {
+//        super(cell);
+//    }
 
     public Rock() {
     }

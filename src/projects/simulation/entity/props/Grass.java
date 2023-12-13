@@ -5,9 +5,9 @@ import projects.simulation.entity.abstracts.Entity;
 import projects.simulation.entity.abstracts.Prop;
 
 public class Grass extends Prop {
-    public Grass(Cell cell) {
-        super(cell);
-    }
+//    public Grass(Cell cell) {
+//        super(cell);
+//    }
 
     public Grass() {
     }

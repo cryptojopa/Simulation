@@ -8,9 +8,9 @@ public abstract class Creature extends Entity {
     private int speed;
     private int hp = 100;
 
-    public Creature(Cell cell) {
-        super(cell);
-    }
+//    public Creature(Cell cell) {
+//        super(cell);
+//    }
 
     protected Creature() {
     }

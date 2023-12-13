@@ -7,10 +7,10 @@ import projects.simulation.entity.abstracts.Creature;
 public class Predator extends Creature {
     private int attackPower;
 
-    public Predator(Cell cell) {
-        super(cell);
-        this.setSpeed(2);
-    }
+//    public Predator(Cell cell) {
+//        super(cell);
+//        this.setSpeed(2);
+//    }
 
     public Predator() {
     }

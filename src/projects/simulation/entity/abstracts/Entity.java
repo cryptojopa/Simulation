@@ -5,9 +5,9 @@ import projects.simulation.Cell;
 public abstract class Entity {
     private Cell cell;
 
-    public Entity(Cell cell) {
-        this.cell = cell;
-    }
+//    public Entity(Cell cell) {
+//        this.cell = cell;
+//    }
 
     protected Entity() {
     }

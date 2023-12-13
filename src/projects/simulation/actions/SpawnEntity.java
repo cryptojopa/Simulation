@@ -8,7 +8,7 @@ import projects.simulation.exceptions.AlreadyHaveEntityException;
 import java.util.HashMap;
 import java.util.Random;
 
-public class SpawnEntity extends Actions {
+public class SpawnEntity extends Action {
     private final HashMap<Class<? extends Entity>, Integer> entities;
     private final int countOfEntities;
 
@@ -34,7 +34,7 @@ public class SpawnEntity extends Actions {
                     Entity newEntity = entity.getDeclaredConstructor().newInstance();
                     map.setEntity(cell, newEntity);
                 } catch (AlreadyHaveEntityException e) {
-                    handleAlreadyHaveEntityException(map, entity, ran);
+                    handleAlreadyHaveEntityException(map, entity);
                 } catch (Exception e) {
                     System.out.println("Что-то пошло не так");
                 }
@@ -47,7 +47,7 @@ public class SpawnEntity extends Actions {
         return new Cell(ran.nextInt(map.getMaxX()), ran.nextInt(map.getMaxY()));
     }
 
-    private void handleAlreadyHaveEntityException(Map map, Class<? extends Entity> entity, Random ran) {
+    private void handleAlreadyHaveEntityException(Map map, Class<? extends Entity> entity) {
         boolean success = false;
         while (!success) {
             Cell cell = generateRandomCell(map);

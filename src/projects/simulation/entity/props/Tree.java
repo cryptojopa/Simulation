@@ -5,9 +5,9 @@ import projects.simulation.entity.abstracts.Entity;
 import projects.simulation.entity.abstracts.Prop;
 
 public class Tree extends Prop {
-    public Tree(Cell cell) {
-        super(cell);
-    }
+//    public Tree(Cell cell) {
+//        super(cell);
+//    }
 
     public Tree() {
     }
