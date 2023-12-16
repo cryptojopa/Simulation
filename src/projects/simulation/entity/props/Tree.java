@@ -5,9 +5,6 @@ import projects.simulation.entity.abstracts.Entity;
 import projects.simulation.entity.abstracts.Prop;
 
 public class Tree extends Prop {
-//    public Tree(Cell cell) {
-//        super(cell);
-//    }
 
     public Tree() {
     }
@@ -15,7 +12,6 @@ public class Tree extends Prop {
     @Override
     public String toString() {
         return "\uD83C\uDF33";
-//        return "\uD83D\uDFE7";
     }
 
     @Override

@@ -4,18 +4,19 @@ import projects.simulation.Map;
 import projects.simulation.Cell;
 import projects.simulation.enums.Direction;
 
-public abstract class Creature extends Entity {
-    private int speed;
-    private int hp = 100;
+import java.util.ArrayList;
 
-//    public Creature(Cell cell) {
-//        super(cell);
-//    }
+public abstract class Creature extends Entity {
+    protected int speed;
+    protected int hp = 100;
+    protected ArrayList<Class<? extends Entity>> goal = new ArrayList<>();
 
     protected Creature() {
     }
 
     public abstract void makeMove(Map map);
+
+    protected abstract void doStep();
 
     public int getHp() {
         return hp;

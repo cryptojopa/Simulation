@@ -19,8 +19,6 @@ public class SpawnEntity extends Action {
 
     @Override
     public void makeAction(Map map) {
-        Random ran = new Random();
-
         if (map.getCountOfEmptyCells() < countOfEntities) {
             System.out.println("Нет места для такого кол-ва сущностей");
             return;
@@ -36,7 +34,7 @@ public class SpawnEntity extends Action {
                 } catch (AlreadyHaveEntityException e) {
                     handleAlreadyHaveEntityException(map, entity);
                 } catch (Exception e) {
-                    System.out.println("Что-то пошло не так");
+                    System.out.printf("При спавне %s что-то пошло не так", entity.getSimpleName());
                 }
             }
         }

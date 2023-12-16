@@ -3,19 +3,17 @@ package projects.simulation.entity.creatures;
 import projects.simulation.Map;
 import projects.simulation.Cell;
 import projects.simulation.entity.abstracts.Creature;
+import projects.simulation.entity.abstracts.Entity;
 import projects.simulation.entity.props.Grass;
-import projects.simulation.enums.Direction;
+import projects.simulation.entity.props.Tree;
 import projects.simulation.exceptions.AlreadyHaveEntityException;
 //import projects.simulation.entity.Void;
 
 public class Herbivore extends Creature {
 
-//    public Herbivore(Cell cell) {
-//        super(cell);
-//        this.setSpeed(1);
-//    }
-
     public Herbivore() {
+        speed = 1;
+        goal.add(Grass.class);
     }
 
     @Override
@@ -25,19 +23,27 @@ public class Herbivore extends Creature {
 
     @Override
     public void makeMove(Map map) {
-        Cell nextCell = map.findNExt(this, new Grass());
-//        Cell nextCell = map.nextCell(Direction.RIGHT, getCell());
+        Cell prevCell;
+        Cell nextCell = map.getNext(this, goal);
         try {
-            map.clearCell(getCell());
+            prevCell = getCell();
             map.setEntity(nextCell, this);
+            map.clearCell(prevCell);
         } catch (AlreadyHaveEntityException e) {
-            if (map.getEntity(nextCell) instanceof Grass) {
+            if (goal.contains(map.getEntity(nextCell).getClass())){
                 map.clearCell(nextCell);
                 try {
+                    prevCell = getCell();
                     map.setEntity(nextCell, this);
+                    map.clearCell(prevCell);
                 } catch (AlreadyHaveEntityException ignore) {
                 }
             }
         }
+    }
+
+    @Override
+    protected void doStep() {
+
     }
 }
