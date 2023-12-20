@@ -3,6 +3,7 @@ package projects.simulation;
 import projects.simulation.entity.Empty;
 import projects.simulation.entity.abstracts.Creature;
 import projects.simulation.entity.abstracts.Entity;
+import projects.simulation.entity.props.Grass;
 import projects.simulation.enums.Direction;
 import projects.simulation.exceptions.AlreadyHaveEntityException;
 import projects.simulation.exceptions.OutOfMapException;
@@ -91,6 +92,10 @@ public class Map {
         return maxX * maxY - map.size();
     }
 
+//    public boolean haveEntity(Class<? extends Entity> entityClass) {
+//        return map.containsValue();
+//    }
+
     private void isCellCorrect(Cell cell) throws OutOfMapException {
         if (!(cell.getX() < maxX && cell.getX() >= 0 && cell.getY() < maxY && cell.getY() >= 0)) {
             throw new OutOfMapException();
@@ -107,7 +112,7 @@ public class Map {
         }
     }
 
-    public Cell getNextCell(Direction direction, Cell cell) throws OutOfMapException {
+    private Cell getNextCell(Direction direction, Cell cell) throws OutOfMapException {
         Cell nextCell = switch (direction) {
             case UP -> new Cell(cell.getX(), cell.getY() - 1);
             case DOWN -> new Cell(cell.getX(), cell.getY() + 1);

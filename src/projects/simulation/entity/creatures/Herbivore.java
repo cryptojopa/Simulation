@@ -23,23 +23,26 @@ public class Herbivore extends Creature {
 
     @Override
     public void makeMove(Map map) {
-        Cell prevCell;
-        Cell nextCell = map.getNext(this, goal);
-        try {
-            prevCell = getCell();
-            map.setEntity(nextCell, this);
-            map.clearCell(prevCell);
-        } catch (AlreadyHaveEntityException e) {
-            if (goal.contains(map.getEntity(nextCell).getClass())){
-                map.clearCell(nextCell);
-                try {
-                    prevCell = getCell();
-                    map.setEntity(nextCell, this);
-                    map.clearCell(prevCell);
-                } catch (AlreadyHaveEntityException ignore) {
+//        for (int i = 0; i < speed; i++) {
+            Cell prevCell;
+            Cell nextCell = map.getNext(this, goal);
+            try {
+                prevCell = getCell();
+                map.setEntity(nextCell, this);
+                map.clearCell(prevCell);
+            } catch (AlreadyHaveEntityException e) {
+                if (goal.contains(map.getEntity(nextCell).getClass())){
+                    map.clearCell(nextCell);
+                    try {
+                        prevCell = getCell();
+                        map.setEntity(nextCell, this);
+                        map.clearCell(prevCell);
+                    } catch (AlreadyHaveEntityException ignore) {
+                    }
                 }
             }
-        }
+//        }
+
     }
 
     @Override

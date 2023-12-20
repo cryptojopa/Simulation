@@ -15,25 +15,36 @@ public class Predator extends Creature {
         attackPower = 50;
     }
 
-    public void attack(Herbivore herbivore) {
-        herbivore.setHp(herbivore.getHp() - attackPower);
+    public void attack(Creature creature) {
+        creature.setHp(creature.getHp() - attackPower);
     }
 
     @Override
     public void makeMove(Map map) {
-        Cell nextCell = map.getNext(this, goal);
-        try {
-            map.clearCell(getCell());
-            map.setEntity(nextCell, this);
-        } catch (AlreadyHaveEntityException e) {
-            if (goal.contains(map.getEntity(nextCell).getClass())) {
-                map.clearCell(nextCell);
-                try {
-                    map.setEntity(nextCell, this);
-                } catch (AlreadyHaveEntityException ignore) {
+//        for (int i = 0; i < speed; i++) {
+            Cell prevCell;
+            Cell nextCell = map.getNext(this, goal);
+            try {
+                prevCell = getCell();
+                map.setEntity(nextCell, this);
+                map.clearCell(prevCell);
+            } catch (AlreadyHaveEntityException e) {
+                Creature nextCreature = (Creature) map.getEntity(nextCell);
+                if (goal.contains(nextCreature.getClass())) {
+                    prevCell = getCell();
+                    attack(nextCreature);
+                    if (nextCreature.getHp() <= 0) {
+                        try {
+                            map.clearCell(nextCell);
+                            map.setEntity(nextCell, this);
+                            map.clearCell(prevCell);
+                        } catch (AlreadyHaveEntityException ignore) {
+                        }
+                    }
+
                 }
             }
-        }
+//        }
     }
 
     @Override
