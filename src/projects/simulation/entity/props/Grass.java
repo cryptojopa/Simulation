@@ -8,10 +8,6 @@ public class Grass extends Prop {
     public Grass() {
     }
 
-    @Override
-    public boolean isResource() {
-        return true;
-    }
 
     @Override
     public String toString() {

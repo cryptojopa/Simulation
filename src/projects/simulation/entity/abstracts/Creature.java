@@ -1,9 +1,6 @@
 package projects.simulation.entity.abstracts;
 
 import projects.simulation.Map;
-import projects.simulation.Cell;
-import projects.simulation.enums.Direction;
-
 import java.util.ArrayList;
 
 public abstract class Creature extends Entity {
@@ -15,8 +12,6 @@ public abstract class Creature extends Entity {
     }
 
     public abstract void makeMove(Map map);
-
-    protected abstract void doStep();
 
     public int getHp() {
         return hp;

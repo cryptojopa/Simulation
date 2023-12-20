@@ -3,14 +3,11 @@ package projects.simulation;
 import projects.simulation.entity.Empty;
 import projects.simulation.entity.abstracts.Creature;
 import projects.simulation.entity.abstracts.Entity;
-import projects.simulation.entity.props.Grass;
 import projects.simulation.enums.Direction;
 import projects.simulation.exceptions.AlreadyHaveEntityException;
 import projects.simulation.exceptions.OutOfMapException;
 
-import java.lang.reflect.Array;
 import java.util.*;
-//import projects.simulation.entity.Void;
 
 public class Map {
     private final HashMap<Cell, Entity> map = new HashMap<>();
@@ -92,9 +89,9 @@ public class Map {
         return maxX * maxY - map.size();
     }
 
-//    public boolean haveEntity(Class<? extends Entity> entityClass) {
-//        return map.containsValue();
-//    }
+    public boolean haveEntity(Class<? extends Entity> entityClass) {
+        return map.values().stream().anyMatch(entityClass::isInstance);
+    }
 
     private void isCellCorrect(Cell cell) throws OutOfMapException {
         if (!(cell.getX() < maxX && cell.getX() >= 0 && cell.getY() < maxY && cell.getY() >= 0)) {

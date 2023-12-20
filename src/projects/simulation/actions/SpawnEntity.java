@@ -3,14 +3,29 @@ package projects.simulation.actions;
 import projects.simulation.Cell;
 import projects.simulation.Map;
 import projects.simulation.entity.abstracts.Entity;
+import projects.simulation.entity.creatures.Herbivore;
+import projects.simulation.entity.creatures.Predator;
+import projects.simulation.entity.props.Grass;
+import projects.simulation.entity.props.Rock;
+import projects.simulation.entity.props.Tree;
 import projects.simulation.exceptions.AlreadyHaveEntityException;
 
 import java.util.HashMap;
 import java.util.Random;
 
 public class SpawnEntity extends Action {
-    private final HashMap<Class<? extends Entity>, Integer> entities;
+    private HashMap<Class<? extends Entity>, Integer> entities = new HashMap<>();
+
     private final int countOfEntities;
+
+    public SpawnEntity() {
+        entities.put(Herbivore.class, 2);
+        entities.put(Predator.class, 2);
+        entities.put(Grass.class, 1);
+        entities.put(Tree.class, 10);
+        entities.put(Rock.class, 10);
+        this.countOfEntities = entities.values().stream().mapToInt(Integer::intValue).sum();
+    }
 
     public SpawnEntity(HashMap<Class<? extends Entity>, Integer> entities) {
         this.entities = entities;

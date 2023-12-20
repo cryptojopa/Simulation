@@ -13,9 +13,4 @@ public class Tree extends Prop {
     public String toString() {
         return "\uD83C\uDF33";
     }
-
-    @Override
-    public boolean isResource() {
-        return false;
-    }
 }

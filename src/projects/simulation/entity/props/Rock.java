@@ -12,9 +12,4 @@ public class Rock extends Prop {
     public String toString() {
         return "\uD83D\uDDFF";
     }
-
-    @Override
-    public boolean isResource() {
-        return false;
-    }
 }

@@ -1,6 +1,5 @@
 package projects.simulation.entity;
 
-import projects.simulation.Cell;
 import projects.simulation.entity.abstracts.Entity;
 
 public class Empty extends Entity {

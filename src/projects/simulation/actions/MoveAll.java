@@ -14,16 +14,10 @@ public class MoveAll extends Action {
         List<Entity> entities = new ArrayList<>(map.getEntities());
         entities.forEach(entity -> {
             if (entity instanceof Creature creature) {
-                for (int i = 0; i < creature.getSpeed(); i++) {
-                    creature.makeMove(map);
-//                    map.render();
-////                    System.out.println();
-//                    try {
-//                        Thread.sleep(1500);
-//                    } catch (InterruptedException e) {
-//                        throw new RuntimeException(e);
-//                    }
+                if (creature.getHp() <= 0) {
+                    return;
                 }
+                creature.makeMove(map);
             }
         });
     }
