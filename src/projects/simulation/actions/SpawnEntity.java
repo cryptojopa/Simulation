@@ -19,9 +19,9 @@ public class SpawnEntity extends Action {
     private final int countOfEntities;
 
     public SpawnEntity() {
-        entities.put(Herbivore.class, 2);
+        entities.put(Herbivore.class, 5);
         entities.put(Predator.class, 2);
-        entities.put(Grass.class, 1);
+        entities.put(Grass.class, 10);
         entities.put(Tree.class, 10);
         entities.put(Rock.class, 10);
         this.countOfEntities = entities.values().stream().mapToInt(Integer::intValue).sum();

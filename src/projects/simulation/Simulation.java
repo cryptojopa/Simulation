@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Simulation {
-    private static final Map map = new Map(10, 10);
+    private static final Map map = new Map(20, 20);
 
     private static final List<Action> initActions = List.of(new SpawnEntity());
     private static final List<Action> turnActions = Arrays.asList(new MoveAll(), new CheckForRespawn());
@@ -27,8 +27,7 @@ public class Simulation {
     private static void startSimulation() {
         while (true) {
             turnActions.forEach(action -> action.makeAction(map));
-            map.render();
-            System.out.println();
+            nextTurn();
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
@@ -38,8 +37,10 @@ public class Simulation {
     }
 
     private static void pauseSimulation() {
+        //не знаю, как реализовать в консольном приложении. вернусь к этому, если буду реализовывать графический интерфейс
     }
 
     private static void nextTurn() {
+        map.render();
     }
 }
